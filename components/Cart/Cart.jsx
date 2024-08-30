@@ -23,7 +23,7 @@ const Cart = ({ active, setactive }) => {
     return (
         (
             <div ref={cartRef} className={`flex flex-col  border  border-black  ${styles.cart} ${active ? styles.active : styles.notactive} fixed top-0 right-0 h-[100vh] pr-2  pl-10 bg-white rounded-tl-2xl rounded-bl-2xl w-[80vw] md:w-[30vw]`} >
-                <div className='h-100px flex relative mt-6'>
+                <div  onClick={(e) => e.stopPropagation()}  className='h-100px flex relative mt-6'>
                     <IoMdClose onClick={() => setactive(prev => !prev)} size={22} className='mt-3 mr-4  hover:rotate-180 transition-all duration-300 cursor-pointer font-light' />
                     <h3 className=' text-2xl text-left mt-2'>Cart</h3>
                 </div>

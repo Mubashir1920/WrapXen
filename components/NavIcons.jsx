@@ -37,16 +37,21 @@ const NavIcons = ({ setShowSideNav }) => {
 
 
             {/* Show Cart */}
-            <div className="relative" >
-                <IoBagHandleOutline onClick={() => {
-                    setShowCart(prev => !prev)
-                    setShowSideNav(false)
+            <div
+                className="relative cursor-pointer"
+                onClick={() => {
+                    setShowCart((prev) => !prev);
+                    setShowSideNav(false);
                 }}
+            >
+                <IoBagHandleOutline
                     size={22}
-                    className=" cursor-pointer  text-gray-900" />
+                    className="text-gray-900"
+                />
                 <Cart active={showCart} setactive={setShowCart} />
                 <CartItemCount />
             </div>
+
 
             {/* To Wish List Page Details  */}
             <Link href='/account/wishlist' className="relative hidden md:inline-block" >

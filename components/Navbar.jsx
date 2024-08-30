@@ -8,6 +8,7 @@ import { useState } from "react";
 import SideBarNav from "./SideBarNav";
 import Logo from '@/public/images/Logo.png'
 import NavIcons from "./NavIcons";
+import { FaChevronDown } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -18,7 +19,7 @@ const Navbar = () => {
 
 
   return (
-    <header className="bg-white shadow-sm shadow-gray-200 py-1">
+    <header className="bg-white shadow-sm z-50 fixed top-0 left-0 w-full shadow-gray-200 py-1">
       <nav className="flex justify-between  items-center w-[92%] py-3 mx-auto">
 
         {/*  Mobile Nav Menu Btn*/}
@@ -41,6 +42,16 @@ const Navbar = () => {
             <li>
               <Link className="hover:text-gray-500" href="/store">Store</Link>
             </li>
+            <li className="group " >
+              <Link className="group-hover:text-gray-500 " href="/store">Skins <FaChevronDown size={12} className="inline-block group-hover:text-gray-500  text-gray-900" /> </Link>
+              <div className="hidden group-hover:block hover:block z-10 fixed top-11 left-48 md:left-48  bg-white divide-y divide-gray-100 rounded-lg shadow w-36" >
+                <div className="px-2 py-6 text-sm text-center  flex flex-col gap-4 text-black">
+                <Link className="hover:text-gray-500" href="/store">Laptop Skins  </Link>
+                <Link className="hover:text-gray-500" href="/store">Mobile Skins</Link>
+                </div>
+
+              </div>
+            </li>
           </ul>
         </div>
 
@@ -53,7 +64,7 @@ const Navbar = () => {
         </div>
 
         {/* Icons */}
-        <NavIcons  setShowSideNav={setShowSideNav} />
+        <NavIcons setShowSideNav={setShowSideNav} />
 
 
       </nav>

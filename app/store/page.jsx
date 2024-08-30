@@ -1,4 +1,9 @@
 
+export const metadata ={
+    title :"Store"
+}
+
+
 const StorePage = () => {
     return (
         <div>

@@ -7,7 +7,7 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 const Footer = () => {
   const Year = new Date().getFullYear()
   return (
-    <footer className="bg-white border border-gray-100 mt-10 rounded-tl-3xl rounded-tr-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+    <footer className="bg-blue-100 border border-gray-100 mt-10 rounded-tl-3xl rounded-tr-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
       <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between">
           <div className="text-teal-600">
