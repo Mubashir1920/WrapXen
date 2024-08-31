@@ -11,12 +11,20 @@ const Footer = () => {
       <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between">
           <div className="text-teal-600">
-           <Image src={Logo} width={160} alt="WrapXen" height={100} />
+            <Image
+              className="h-[35px] w-auto"
+              height={0}
+              width={0}
+              priority='true'
+              alt="WarpXenLogo"
+              sizes="33%"
+              src={Logo}
+            />
           </div>
 
           <ul className="mt-8 flex justify-start gap-6 sm:mt-0 sm:justify-end">
-           <FaFacebook size={22} className="hover:text-blue-500 transition-colors" />
-           <FaInstagram size={22} className="hover:text-pink-500 transition-colors"  />
+            <FaFacebook size={22} className="hover:text-blue-500 transition-colors" />
+            <FaInstagram size={22} className="hover:text-pink-500 transition-colors" />
           </ul>
         </div>
 

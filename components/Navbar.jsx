@@ -4,11 +4,11 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-
 import SideBarNav from "./SideBarNav";
-import Logo from '@/public/images/Logo.png'
-import NavIcons from "./NavIcons";
 import { FaChevronDown } from "react-icons/fa";
+import NavIcons from "./NavIcons";
+import Logo from '@/public/images/Logo.png'
+import MobileLogo from '@/public/images/Mobilelogo.png'
 
 
 const Navbar = () => {
@@ -46,8 +46,8 @@ const Navbar = () => {
               <Link className="group-hover:text-gray-500 " href="/store">Skins <FaChevronDown size={12} className="inline-block group-hover:text-gray-500  text-gray-900" /> </Link>
               <div className="hidden group-hover:block hover:block z-10 fixed top-11 left-48 md:left-48  bg-white divide-y divide-gray-100 rounded-lg shadow w-36" >
                 <div className="px-2 py-6 text-sm text-center  flex flex-col gap-4 text-black">
-                <Link className="hover:text-gray-500" href="/store">Laptop Skins  </Link>
-                <Link className="hover:text-gray-500" href="/store">Mobile Skins</Link>
+                  <Link className="hover:text-gray-500" href="/store">Laptop Skins  </Link>
+                  <Link className="hover:text-gray-500" href="/store">Mobile Skins</Link>
                 </div>
 
               </div>
@@ -59,7 +59,24 @@ const Navbar = () => {
         {/* Site Icon */}
         <div className="select-none" >
           <Link href='/' >
-            <Image height={100} width={150} priority='true' alt="WarpXenLogo" src={Logo} />
+            <Image
+              className="h-[40px] hidden lg:inline-block w-auto"
+              height={0}
+              width={0}
+              priority='true'
+              alt="WarpXenLogo"
+              sizes="33%"
+              src={Logo}
+            />
+            <Image
+              className="lg:hidden h-[35px] w-auto"
+              height={0}
+              width={0}
+              priority='true'
+              alt="WarpXenLogo"
+              sizes="33%"
+              src={MobileLogo}
+            />
           </Link>
         </div>
 

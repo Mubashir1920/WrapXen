@@ -1,24 +1,24 @@
 'use client'
 import { useEffect, useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import Image from 'next/image';
-import srcimg from '@/public/images/wrapxen-offer.webp'
+// import Image from 'next/image';
+// import srcimg from '@/public/images/wrapxen-offer.webp'
 
 
 
 export const Carousel = () => {
     const slides = [
         {
-            url: '/images/1.png',
-            text: 'Transform Your Laptop with Custom Full Skins',
-            subtext: 'Express your style with our premium full-coverage skins. Perfect fit, easy application, and endless designs',
-            buttonText: 'Shop Now',
+            url: '/images/3.png',
         },
         {
-            url: '/images/2.png',
-            text: 'Protect & Personalize',
-            subtext: 'Durable protection with a touch of your personality. Choose from our curated collection or create your own',
-            buttonText: 'Explore Designs',
+            url: '/images/4.png',
+        },
+        {
+            url: '/images/5.png',
+        },
+        {
+            url: '/images/6.png',
         },
     ];
     const mobileSlides = [
@@ -27,6 +27,18 @@ export const Carousel = () => {
             text: 'Transform Your Laptop with Custom Full Skins',
             subtext: 'Express your style with our premium full-coverage skins. Perfect fit, easy application, and endless designs',
             buttonText: 'Shop Now',
+        },
+        {
+            url: '/images/MG2.png',
+            text: 'Protect & Personalize',
+            subtext: 'Durable protection with a touch of your personality. Choose from our curated collection or create your own',
+            buttonText: 'Explore Designs',
+        },
+        {
+            url: '/images/MG2.png',
+            text: 'Protect & Personalize',
+            subtext: 'Durable protection with a touch of your personality. Choose from our curated collection or create your own',
+            buttonText: 'Explore Designs',
         },
         {
             url: '/images/MG2.png',
@@ -60,12 +72,12 @@ export const Carousel = () => {
 
     return (
         <>
-            <div className=' max-w-[1400px] h-[calc(100vh-280px)] md:h-[calc(100vh-80px)] py-2 w-full m-auto md:px-4 px-2 relative group'>
+            <div className='max-w-[1400px] h-[calc(100vh-280px)] md:h-[calc(100vh-80px)] py-2 w-full m-auto md:px-4 px-2 relative group'>
                 <div
                     style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
                     className='shadow-[0_8px_30px_rgb(0,0,0,0.12)] hidden md:block w-full h-full rounded-2xl bg-center bg-contain bg-no-repeat duration-500 relative'
                 >
-                   
+
                 </div>
 
                 {/* Mobile Slide */}
@@ -73,7 +85,6 @@ export const Carousel = () => {
                     style={{ backgroundImage: `url(${mobileSlides[currentIndex].url})` }}
                     className='md:hidden block w-full h-full rounded-2xl bg-center bg-contain bg-no-repeat duration-500 relative'
                 >
-                   
                 </div>
 
                 {/* Left Arrow */}
@@ -88,9 +99,9 @@ export const Carousel = () => {
 
 
             </div>
-            <div className="w-full mx-auto px-2  container">
+            {/* <div className="w-full mx-auto px-2  container">
                 <Image alt='WrapXenOffer' src={srcimg} />
-            </div>
+            </div> */}
         </>
     );
 };
