@@ -2,7 +2,6 @@
 import Image from "next/image"
 import { useState } from "react"
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import { FaExpandArrowsAlt } from "react-icons/fa";
 
 
 const ProductImages = ({ items }) => {
@@ -36,14 +35,11 @@ const ProductImages = ({ items }) => {
                 <div className='hidden md:block absolute hover:bg-blue-300 hover:text-white hover:border-white transition-colors duration-300 top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 border border-black  text-black cursor-pointer'>
                     <BsChevronCompactRight onClick={nextSlide} size={16} />
                 </div>
-                {/* <div className="group flex gap-2 items-center absolute bottom-10 overflow-hidden cursor-pointer right-6">
-                    <p className="  opacity-0 bg-white translate-x-[1000px] p-2 rounded-3xl shadow-md group-hover:translate-x-0 group-hover:opacity-100 duration-500" >Click To Expand Image</p>
-                    <FaExpandArrowsAlt className=" text-gray-700 hover:text-black hover:scale-105 transition-all" size={18} />
-                </div> */}
+                
             </div>
             <div className="flex justify-left gap-4 my-4" >
                 {items.map((item, i) => (
-                    <div key={item.id} className="w-1/6 h-24 relative mt-2">
+                    <div key={i} className="w-1/6 h-24 relative mt-2">
                         <Image
                             onClick={() => setIndex(i)}
                             src={item.image?.url}
