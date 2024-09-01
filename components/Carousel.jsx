@@ -24,27 +24,15 @@ export const Carousel = () => {
     const mobileSlides = [
         {
             url: '/images/MG.png',
-            text: 'Transform Your Laptop with Custom Full Skins',
-            subtext: 'Express your style with our premium full-coverage skins. Perfect fit, easy application, and endless designs',
-            buttonText: 'Shop Now',
         },
         {
             url: '/images/MG2.png',
-            text: 'Protect & Personalize',
-            subtext: 'Durable protection with a touch of your personality. Choose from our curated collection or create your own',
-            buttonText: 'Explore Designs',
         },
         {
             url: '/images/MG2.png',
-            text: 'Protect & Personalize',
-            subtext: 'Durable protection with a touch of your personality. Choose from our curated collection or create your own',
-            buttonText: 'Explore Designs',
         },
         {
             url: '/images/MG2.png',
-            text: 'Protect & Personalize',
-            subtext: 'Durable protection with a touch of your personality. Choose from our curated collection or create your own',
-            buttonText: 'Explore Designs',
         },
     ];
 

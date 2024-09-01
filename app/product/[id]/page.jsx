@@ -1,8 +1,10 @@
 import { WixClientServer } from "@/lib/wixClientServer";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { FaFacebook, FaHeart, FaStar } from "react-icons/fa";
-import { CiZoomIn } from "react-icons/ci";
+
+import ProductImages from "@/components/ProductImages";
+import ProductDescription from "@/components/ProductDescription";
+
 
 
 
@@ -21,39 +23,8 @@ const page = async ({ params }) => {
     <div className="container mx-auto px-4 py-8">
       {/* <!-- Product Images Section --> */}
       <div className="flex flex-wrap">
-        <div className="w-full md:w-1/2">
-          {/* <!-- Main Image --> */}
-          <div className="relative">
-            <Image
-              src={product.media?.mainMedia?.image?.url}
-              alt={product.slug}
-              className="w-full rounded-lg shadow-md"
-              height={0}
-              width={0}
-              priority='true'
-              sizes="100%"
-            />
-            {/* <!-- Zoom Icon --> */}
-            <div className="absolute bottom-2 right-2 bg-white p-1 rounded-full shadow">
-              <CiZoomIn />
-            </div>
-          </div>
-
-          {/* <!-- Thumbnail Images --> */}
-          <div className="flex mt-4 space-x-2">
-            {product.media?.items && product.media?.items.map((item, index) => (
-              <Image
-                key={index}
-                height={0}
-                width={0}
-                priority='true'
-                sizes="100%"
-                src={item.image?.url}
-                alt={product.slug}
-                className="w-16 h-16 rounded-lg shadow-md cursor-pointer"
-              />
-            ))}
-          </div>
+        <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
+          <ProductImages items={product.media?.items} />
         </div>
 
         {/* <!-- Product Details Section --> */}
@@ -141,35 +112,7 @@ const page = async ({ params }) => {
         </div>
       </div>
 
-      <div class="w-full mx-auto mt-10 p-6 rounded-lg bg-gray-100">
-        {/* <!-- Tabs --> */}
-        <ul class="flex border-b">
-          <li class="mr-1">
-            <a href="#" class="inline-block py-2 px-4 text-gray-500 hover:text-gray-700">Description</a>
-          </li>
-          <li class="-mb-px mr-1">
-            <a href="#" class="inline-block py-2 px-4 text-black font-semibold border-b-2 border-black">Additional Information</a>
-          </li>
-          <li class="mr-1">
-            <a href="#" class="inline-block py-2 px-4 text-gray-500 hover:text-gray-700">Reviews</a>
-          </li>
-        </ul>
-        {/* <!-- Tab Content --> */}
-        <div class="mt-4">
-          <table class="min-w-full border border-gray-200">
-            <tbody class="bg-white">
-              <tr>
-                <td class="px-6 py-4 border border-gray-200 font-medium text-gray-500">Size</td>
-                <td class="px-6 py-4 border border-gray-200 text-gray-700">15"-15.6", 14", 13"-13.3", 17"-17.3"</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 border border-gray-200 font-medium text-gray-500">Skin Coverage</td>
-                <td class="px-6 py-4 border border-gray-200 text-gray-700">Top Skin Only, Full Panel, Full Body</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <ProductDescription />
     </div>
 
   )

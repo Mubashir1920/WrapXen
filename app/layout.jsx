@@ -14,8 +14,8 @@ export const metadata = {
     default: "WrapXen",
     template: "%s | WrapXen"
   },
-
   description: "",
+  
 };
 
 export default function RootLayout({ children }) {

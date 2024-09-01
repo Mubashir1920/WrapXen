@@ -6,13 +6,13 @@ const ProductCard = ({ product }) => {
 
     return (
 
-        <div className="md:w-64 relative w-[80%] bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="relative h-72 hover:scale-105 transition-transform duration-1000 ease-in-out  md:h-66 cursor-pointer ">
+        <div className="md:w-60 relative w-[80%] bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="relative  md:h-[250px] hover:scale-105 transition-transform duration-1000 ease-in-out   cursor-pointer ">
                 <Link className='' href={`/product/${product.slug}`} >
                     <Image
                         src={product.media?.mainMedia?.image?.url || "/images/Anime.webp"}
                         alt="Product"
-                        className="w-full h-64 object-cover"
+                        className="w-full h-full md:h-64 object-cover"
                         height={0}
                         width={0}
                         priority='true'
@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
                     {product.media?.items && <Image
                         src={product.media?.items[1]?.image?.url || "/images/Anime.webp"}
                         alt="Product"
-                        className="absolute top-0 hover:opacity-0 transition-opacity easy duration-300  w-full h-64 object-cover"
+                        className="absolute top-0 hover:opacity-0 transition-opacity easy duration-300  w-full h-full md:h-64 object-cover"
                         height={0}
                         width={0}
                         priority='true'
