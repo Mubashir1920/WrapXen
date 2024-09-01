@@ -23,16 +23,16 @@ export const Carousel = () => {
     ];
     const mobileSlides = [
         {
-            url: '/images/MG.png',
+            url: '/images/mobileBanner/1.png',
         },
         {
-            url: '/images/MG2.png',
+            url: '/images/mobileBanner/2.png',
         },
         {
-            url: '/images/MG2.png',
+            url: '/images/mobileBanner/3.png',
         },
         {
-            url: '/images/MG2.png',
+            url: '/images/mobileBanner/4.png',
         },
     ];
 

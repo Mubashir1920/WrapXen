@@ -39,7 +39,7 @@ const ProductImages = ({ items }) => {
             </div>
             <div className="flex justify-left gap-4 my-4" >
                 {items.map((item, i) => (
-                    <div key={i} className="w-1/6 h-24 relative mt-2">
+                    <div key={item._id} className="w-1/6 h-24 relative mt-2">
                         <Image
                             onClick={() => setIndex(i)}
                             src={item.image?.url}

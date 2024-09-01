@@ -7,7 +7,6 @@ import ProductDescription from "@/components/ProductDescription";
 
 
 
-
 const page = async ({ params }) => {
 
   const wixClient = await WixClientServer()
