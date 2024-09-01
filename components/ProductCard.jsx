@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
             </button>
             <div className="p-3">
                 <div className="flex items-center space-x-2">
-                    <span className="text-sm text-blue-500 font-semibold">Rs {product.price.price}/-</span>
+                    <span className="text-sm text-black font-bold">Rs {product.price.price}/-</span>
                 </div>
                 <div className="flex flex-wrap justify-start items-start gap-2 mt-3">
                     {product.productOptions[0].choices.map(size => (

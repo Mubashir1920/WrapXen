@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { Poppins } from "next/font/google";
 import { WixClientProvider } from '@/context/wixContext';
+import 'photoswipe/dist/photoswipe.css'
 
 const poppins = Poppins({
   subsets: ["latin"],
