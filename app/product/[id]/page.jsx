@@ -1,9 +1,11 @@
 import { WixClientServer } from "@/lib/wixClientServer";
 import { notFound } from "next/navigation";
-import { FaFacebook, FaHeart, FaStar } from "react-icons/fa";
-
+import { FaFacebook, FaStar } from "react-icons/fa";
 import ProductImages from "@/components/ProductImages";
 import ProductDescription from "@/components/ProductDescription";
+import ProductOptions from "@/components/ProductOptions";
+import AddToCart from "@/components/AddtoCart";
+import Link from "next/link";
 
 
 
@@ -18,24 +20,35 @@ const page = async ({ params }) => {
 
   const product = products.items[0]
 
+
+
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col justify-center py-8 w-full  items-start">
+        <p className="text-gray-600 italic text-sm" >  <Link className="hover:text-gray-800 font-normal" href='/'>Home</Link> {' > '} {product.name}  </p>
+      </div>
       {/* <!-- Product Images Section --> */}
-      <div className="flex flex-wrap">
+      <div className="flex flex-col md:flex-row">
         <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
           <ProductImages items={product.media?.items} />
         </div>
 
         {/* <!-- Product Details Section --> */}
-        <div className=" w-full md:w-1/2 pl-8">
+        <div className=" w-full md:w-1/2 pl-4 md:pl-8">
           {/* <!-- Title --> */}
-          <h1 className="text-2xl font-semibold text-gray-800"> {product.name} </h1>
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-800"> {product.name} </h1>
 
           {/* <!-- Price Section --> */}
           <div className="flex items-center space-x-2 mt-4">
-            <span className="text-xl font-semibold text-red-600">Rs. 299.00</span>
-            <span className="text-sm line-through text-gray-500">Rs. 499.00</span>
+            {product.priceData.discountedPrice !== product.priceData.price ? (<div>
+              <span className="text-xl tracking-tighter font-bold text-gray-900">Rs {product.priceData.discountedPrice.toFixed()} </span>
+              <span className="text-sm line-through text-gray-500"> {product.priceData.price} </span>
+            </div>) : (
+
+              <span className="text-xl tracking-tighter font-bold text-gray-900 "> Rs {product.priceData.price}/-  </span>
+            )}
           </div>
+
 
           {/* <!-- Rating --> */}
           <div className="flex items-center mt-2">
@@ -49,40 +62,20 @@ const page = async ({ params }) => {
             </div>
             <span className="text-sm text-gray-600 ml-2">(1 review)</span>
           </div>
-
-          {/* <!-- Size Selection --> */}
-          <div className="mt-4">
-            <span className="text-gray-700 font-semibold">SIZE: 14"</span>
-            <div className="flex space-x-2 mt-2">
-              <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm">15"-15.6"</button>
-              <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm bg-gray-200">14"</button>
-              <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm">13"-13.3"</button>
-              <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm">17"-17.3"</button>
-            </div>
+          <div className="mt-4 text-sm text-gray-500">
+            <p>Standard Size Laptop Skin.Refer to Our Size Guide to select the ideal size and Skin coverage for your Laptop </p>
           </div>
+          {product.variants && product.productOptions ? (
 
-          {/* <!-- Skin Coverage Selection --> */}
-          <div className="mt-4">
-            <span className="text-gray-700 font-semibold">SKIN COVERAGE: CHOOSE AN OPTION</span>
-            <div className="flex space-x-2 mt-2">
-              <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm">Top Skin Only</button>
-              <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm bg-gray-200">Full Panel</button>
-              <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm">Full Body</button>
-            </div>
-          </div>
+            <ProductOptions
+              productId={product._id}
+              variants={product.variants}
+              ProductOptions={product.productOptions}
+            />
+          ) : (
+            <AddToCart productId={product._id} variantsId="00000-0000000-000000" stockNumber={product.stock?.quantity || 0} />
+          )}
 
-          {/* <!-- Quantity and Cart --> */}
-          <div className="mt-6 flex items-center space-x-4">
-            <div className="flex items-center space-x-2 border border-gray-300 rounded-lg px-3 py-1">
-              <button className="text-gray-600">-</button>
-              <span className="text-gray-800">1</span>
-              <button className="text-gray-600">+</button>
-            </div>
-            <button className="flex-1 bg-black hover:bg-transparent hover:border hover:border-black hover:text-black text-white text-sm py-2 rounded-lg transition-all">
-              ADD TO CART
-            </button>
-            <FaHeart />
-          </div>
 
           {/* <!-- Additional Information --> */}
           <div className="mt-4 text-sm text-gray-500">
@@ -108,6 +101,11 @@ const page = async ({ params }) => {
           <div className="mt-6 text-sm text-gray-500">
             <p><strong>Tags:</strong> Anime Laptop Skin, Full Body Laptop Skin, Full Panel Laptop Skin, Laptop Skin</p>
           </div>
+          {/* Product Description */}
+          <div
+            className="mt-6 text-sm text-gray-500"
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          ></div>
         </div>
       </div>
 

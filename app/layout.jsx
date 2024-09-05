@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </head>
-      <body className={`${poppins.className} mt-20`}>
+      <body className={`${poppins.className} mt-[65px]`}>
         <WixClientProvider>
           <Navbar />
           {children}

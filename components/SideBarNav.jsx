@@ -35,7 +35,7 @@ const SideBarNav = ({ active, setActive }) => {
                 }`}>
             <div className='h-full relative '>
                 <FiArrowLeft onClick={() => setActive(false)} size={25} className='top-2 cursor-pointer absolute right-10 ' />
-                <h3 className='text-2xl text-left mt-20'>WRAPXEN</h3>
+                <h3 className='text-2xl text-left mt-20 tracking-tighter font-bold'>WRAPXEN</h3>
                 <div className="  bg-white items-center   ">
                     <ul className="flex flex-col gap-2 mt-10">
                         <li>

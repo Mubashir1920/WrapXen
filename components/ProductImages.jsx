@@ -22,7 +22,7 @@ const ProductImages = ({ items }) => {
     return (
         <Gallery>
             <div>
-                <div className="h-[500px] relative" >
+                <div className="h-[400px] relative" >
                     <Item
                         original={items[index].image?.url}
                         thumbnail={items[index].image?.url}
@@ -33,11 +33,11 @@ const ProductImages = ({ items }) => {
                             <Image
                                 ref={ref}
                                 onClick={open}
-                                
                                 src={items[index].image?.url}
                                 alt='thumbnail'
-                                className="rounded-lg shadow-sm"
-                                priority='true'
+                                className="rounded-lg object-contain shadow-sm"
+                                placeholder="blur"
+                                blurDataURL="/images/Logo.png"
                                 sizes="50vw"
                                 fill
                             />
@@ -57,14 +57,14 @@ const ProductImages = ({ items }) => {
 
                 <div className="flex justify-left gap-4 my-4" >
                     {items.map((item, i) => (
-                        <div key={item._id} className="w-1/6 h-24 relative mt-2">
+                        <div key={item._id} className="w-1/4 md:w-1/5 h-24 relative mt-2 cursor-pointer">
                             <Image
                                 onClick={() => setIndex(i)}
                                 key={item._id}
                                 src={item.image?.url}
                                 alt='thumbnail'
-                                className="rounded-lg shadow-sm"
-                                priority='true'
+                                className="rounded-lg object-contain shadow-sm"
+                                priority={false}
                                 sizes="30vw"
                                 fill
                             />

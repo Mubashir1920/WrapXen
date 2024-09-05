@@ -32,45 +32,41 @@ const Footer = () => {
           className="grid justify-items-center md:justify-items-start text-center md:text-left grid-cols-1 gap-8 border-t border-gray-100 pt-8 sm:grid-cols-2 lg:grid-cols-4 lg:pt-16"
         >
           <div>
-            <p className="font-medium text-gray-900">Services</p>
+            <p className="font-medium text-gray-900">Info</p>
 
             <ul className="mt-6 space-y-4 text-sm">
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> 1on1 Coaching </a>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">About </a>
               </li>
 
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Company Review </a>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">Blog </a>
               </li>
 
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">Careers </a>
               </li>
 
-              <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> HR Consulting </a>
-              </li>
-
-              <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> SEO Optimisation </a>
-              </li>
             </ul>
           </div>
 
           <div>
-            <p className="font-medium text-gray-900">Company</p>
+            <p className="font-medium text-gray-900">Policies</p>
 
             <ul className="mt-6 space-y-4 text-sm">
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> About </a>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">Return & Refund Policy </a>
               </li>
 
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Meet the Team </a>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">Shipping Policy</a>
               </li>
 
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">Privacy Policy </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">Terms Of Services </a>
               </li>
             </ul>
           </div>
@@ -80,6 +76,12 @@ const Footer = () => {
 
             <ul className="mt-6 space-y-4 text-sm">
               <li>
+                <a href="#" className="text-gray-700 transition hover:opacity-75"> Home </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">Shop</a>
+              </li>
+              <li>
                 <a href="#" className="text-gray-700 transition hover:opacity-75"> Contact </a>
               </li>
 
@@ -87,30 +89,16 @@ const Footer = () => {
                 <a href="#" className="text-gray-700 transition hover:opacity-75"> FAQs </a>
               </li>
 
-              <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Live Chat </a>
-              </li>
+              
             </ul>
           </div>
 
-          <div>
-            <p className="font-medium text-gray-900">Legal</p>
+          <div className="select-none" >
+            <p className="font-medium text-gray-900">Our Mission</p>
 
-            <ul className="mt-6 space-y-4 text-sm">
-              <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Accessibility </a>
-              </li>
-
-              <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Returns Policy </a>
-              </li>
-
-              <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Refund Policy </a>
-              </li>
-
-              <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Hiring Statistics </a>
+            <ul className="mt-6 space-y-4 text-sm ">
+              <li className="text-gray-700 transition hover:opacity-75">
+                Our mission is to empower creativity and self-expression by offering premium, full-body laptop skins that combine protection with personalized style. We strive to deliver exceptional quality and design, ensuring each customer finds a perfect match for their unique taste and lifestyle.
               </li>
             </ul>
           </div>

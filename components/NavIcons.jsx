@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const NavIcons = ({ setShowSideNav }) => {
 
-    const [isUser, setIsUser] = useState(true)
+    const [isUser, setIsUser] = useState(false)
     const [showUser, setShowUser] = useState(false)
     const [showCart, setShowCart] = useState(false)
     return (
@@ -38,7 +38,7 @@ const NavIcons = ({ setShowSideNav }) => {
 
             {/* Show Cart */}
             <div
-                className="relative cursor-pointer"
+                className="relative mr-1 md:mr-0 cursor-pointer"
                 onClick={() => {
                     setShowCart((prev) => !prev);
                     setShowSideNav(false);

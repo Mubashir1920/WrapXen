@@ -50,13 +50,13 @@ export const Carousel = () => {
         setCurrentIndex(newIndex);
     };
 
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //         nextSlide();
-    //     }, 2000);
-    //     return () => clearInterval(intervalId);
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            nextSlide();
+        }, 2000);
+        return () => clearInterval(intervalId);
 
-    // }, [currentIndex])
+    }, [currentIndex])
 
     return (
         <>
@@ -86,6 +86,19 @@ export const Carousel = () => {
                 </div>
 
 
+            </div>
+            <div className='px-2 pt-16' >
+
+                <div className="flex gap-2 items-center px-2 md:hidden">
+                    <span className="w-2 h-5 rounded-sm bg-black" ></span>
+                    <h2 className="text-lg font-medium text-left text-gray-800 capitalize" >Lastest</h2>
+                </div>
+                <div className="flex md:justify-center justify-start items-center mt-3 md:mt-1">
+                    <hr className="hidden md:block w-[35%] bg-black h-0.5" />
+                    <h2 className="text-center   md:text-3xl text-2xl font-bold md:font-bold tracking-tighter text-black  capitalize mx-2" >Our Best Sellers</h2>
+                    <hr className="hidden md:block w-[35%] bg-black h-0.5" />
+                </div>
+                <p className="md:text-center mt-3 md:mt-1 text-left px-2  text-gray-700 italic text-sm font-normal capitalize " > laptop skins that offer a perfect mix of style and protection for your device.</p>
             </div>
             {/* <div className="w-full mx-auto px-2  container">
                 <Image alt='WrapXenOffer' src={srcimg} />
