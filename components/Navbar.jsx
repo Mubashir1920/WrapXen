@@ -9,10 +9,10 @@ import { FaChevronDown } from "react-icons/fa";
 import Logo from '@/public/images/Logo.png'
 import MobileLogo from '@/public/images/Mobilelogo.png'
 import { usePathname } from "next/navigation";
-// import NavIcons from "./NavIcons";
+import NavIcons from "./NavIcons";
 import dynamic from "next/dynamic";
 
-const NavIcons = dynamic(()=> import('./NavIcons'), {ssr:false})
+// const NavIcons = dynamic(()=> import('./NavIcons'), {ssr:false})
 
 
 const Navbar = () => {

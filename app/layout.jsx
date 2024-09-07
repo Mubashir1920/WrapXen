@@ -4,6 +4,8 @@ import Navbar from '@/components/Navbar';
 import { Poppins } from "next/font/google";
 import { WixClientProvider } from '@/context/wixContext';
 import 'photoswipe/dist/photoswipe.css'
+import { ToastContainer } from 'react-toastify';
+
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,7 +18,7 @@ export const metadata = {
     template: "%s | WrapXen"
   },
   description: "",
-  
+
 };
 
 export default function RootLayout({ children }) {
@@ -26,6 +28,7 @@ export default function RootLayout({ children }) {
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </head>
       <body className={`${poppins.className} mt-[65px]`}>
+        <ToastContainer />
         <WixClientProvider>
           <Navbar />
           {children}
