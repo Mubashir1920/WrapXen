@@ -1,17 +1,17 @@
 
 import LoginForm from "@/components/LoginForm"
 
-export const metadata={
-    title: 'Login',
-  }
+export const metadata = {
+  title: 'Login',
+}
 
 
 
 const page = () => {
-    return(
-       <LoginForm />
-    )
-   
+  return (
+    <LoginForm />
+  )
+
 }
 
 export default page

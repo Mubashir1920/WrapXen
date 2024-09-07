@@ -6,13 +6,18 @@ import Image from "next/image";
 import { useState } from "react";
 import SideBarNav from "./SideBarNav";
 import { FaChevronDown } from "react-icons/fa";
-import NavIcons from "./NavIcons";
 import Logo from '@/public/images/Logo.png'
 import MobileLogo from '@/public/images/Mobilelogo.png'
+import { usePathname } from "next/navigation";
+// import NavIcons from "./NavIcons";
+import dynamic from "next/dynamic";
+
+const NavIcons = dynamic(()=> import('./NavIcons'), {ssr:false})
 
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const pathname = usePathname()
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
 
   const [showSideNav, setShowSideNav] = useState(false)
 
@@ -37,17 +42,17 @@ const Navbar = () => {
         <div className="  bg-white md:flex items-center px-5 hidden ">
           <ul className="flex  gap-8 ">
             <li>
-              <Link className="hover:text-gray-500" href="/">Home</Link>
+              <Link className={`group-hover:text-gray-500 ${pathname === "/" ? "active" : ""} `} href="/">Home</Link>
             </li>
             <li>
-              <Link className="hover:text-gray-500" href="/store">Store</Link>
+              <Link className={`group-hover:text-gray-500 ${pathname === "/store" ? "active" : ""} `} href="/store">Store</Link>
             </li>
             <li className="group " >
-              <Link className="group-hover:text-gray-500 " href="/store">Skins <FaChevronDown size={12} className="inline-block group-hover:text-gray-500  text-gray-900" /> </Link>
+              <Link className={`group-hover:text-gray-500`} href='#' >Skins <FaChevronDown size={12} className="inline-block group-hover:text-gray-500  text-gray-900" /> </Link>
               <div className="hidden group-hover:block hover:block z-10 fixed top-11 left-48 md:left-48  bg-white divide-y divide-gray-100 rounded-lg shadow w-36" >
                 <div className="px-2 py-6 text-sm text-center  flex flex-col gap-4 text-black">
-                  <Link className="hover:text-gray-500" href="/store">Laptop Skins  </Link>
-                  <Link className="hover:text-gray-500" href="/store">Mobile Skins</Link>
+                  <Link className={`group-hover:text-gray-500 `} href='/store?type=laptopSkins'>Laptop Skins  </Link>
+                  <Link className={`group-hover:text-gray-500 `} href='/store?type=mobileSkins'>Mobile Skins</Link>
                 </div>
 
               </div>

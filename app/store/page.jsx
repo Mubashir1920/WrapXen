@@ -10,7 +10,7 @@ export const metadata = {
 }
 
 
-const StorePage = async () => {
+const StorePage = async ({searchParams}) => {
     return (
         <div>
             <HeroBanner />
@@ -19,8 +19,7 @@ const StorePage = async () => {
             </div>
             <div className=" mt-8 container mx-auto">
                 <Suspense fallback={<Spinner />}  >
-
-                    <ProductListings categoryId={process.env.LAPTOPSKINS_CATEGORY_ID} />
+                    <ProductListings searchParams={searchParams} categoryId={process.env.ALLPRODUCTS_CATEGORY_ID} needPagination={true} />
                 </Suspense>
             </div>
         </div>

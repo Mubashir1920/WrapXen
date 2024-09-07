@@ -26,8 +26,8 @@ const ProductImages = ({ items }) => {
                     <Item
                         original={items[index].image?.url}
                         thumbnail={items[index].image?.url}
-                        width='700'
-                        height='500'
+                        width='600'
+                        height='600'
                     >
                         {({ ref, open }) => (
                             <Image
@@ -37,7 +37,7 @@ const ProductImages = ({ items }) => {
                                 alt='thumbnail'
                                 className="rounded-lg object-contain shadow-sm"
                                 placeholder="blur"
-                                blurDataURL="/images/Logo.png"
+                                blurDataURL="/images/Mobilelogo.png"
                                 sizes="50vw"
                                 fill
                             />

@@ -7,6 +7,30 @@ import ProductOptions from "@/components/ProductOptions";
 import AddToCart from "@/components/AddtoCart";
 import Link from "next/link";
 
+export async function generateMetadata({ params }) {
+  try {
+    const wixClient = await WixClientServer();
+    const products = await wixClient.products.queryProducts().eq("slug", params.id).find();
+
+    if (products.items && products.items.length > 0) {
+      const product = products.items[0];
+      return {
+        title: `${product.name}`,
+      };
+    } else {
+      // Fallback title if product not found
+      return {
+        title: "Product Not Found",
+      };
+    }
+  } catch (error) {
+    // Handle any errors that occur during the process
+    console.error("Error generating metadata:", error);
+    return {
+      title: "Error",
+    };
+  }
+}
 
 
 const page = async ({ params }) => {
@@ -34,7 +58,7 @@ const page = async ({ params }) => {
         </div>
 
         {/* <!-- Product Details Section --> */}
-        <div className=" w-full md:w-1/2 pl-4 md:pl-8">
+        <div className=" w-full md:w-1/2 px-2 md:pl-8">
           {/* <!-- Title --> */}
           <h1 className="text-2xl font-semibold tracking-tight text-gray-800"> {product.name} </h1>
 

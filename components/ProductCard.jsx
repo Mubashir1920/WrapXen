@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { MdFavorite } from 'react-icons/md';
 import Link from 'next/link';
@@ -6,10 +7,11 @@ import LoadingLogo from './LoadingLogo';
 
 
 const ProductCard = ({ product }) => {
+   
 
     return (
 
-        <div className="md:w-60 relative w-[80%] bg-white rounded-lg hover:shadow-md transition-shadow duration-300 overflow-hidden">
+        <div className="md:w-72 px-2 py-2 relative w-[80%] bg-white rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden">
             <div className="relative  md:h-[250px] hover:scale-[1.01] transition-transform duration-1000 ease-in-out   cursor-pointer ">
                 <Link className='' href={`/product/${product.slug}`} >
                     <Suspense fallback={<LoadingLogo />} >
@@ -40,11 +42,18 @@ const ProductCard = ({ product }) => {
                 <MdFavorite size={18} />
             </button>
             <div className="p-3">
-                <div className="flex items-center space-x-2">
-                    <span className="text-sm text-black font-bold">Rs {product.price.price}/-</span>
+                <div className="flex items-center space-x-2 mt-4">
+                    {product.priceData.discountedPrice !== product.priceData.price ? (<div>
+                        <span className="text-sm tracking-tighter font-bold text-red-500 mr-2">Rs {product.priceData.discountedPrice.toFixed()} /- </span>
+                        <span className="text-sm line-through text-gray-500">Rs {product.priceData.price} </span>
+                    </div>) : (
+
+                        <span className="text-sm tracking-tighter font-bold text-red-600 "> Rs {product.priceData.price}/-  </span>
+                    )}
                 </div>
+                
                 <div className="flex flex-wrap justify-start items-start gap-2 mt-3">
-                    {product.productOptions[0].choices.map((size, index) => (
+                    {product.productOptions.length > 0 && product.productOptions[0].choices.map((size, index) => (
                         <span key={index} className="text-xs text-gray-600 border hover:border-gray-400 transition-colors hover:bg-gray-200 border-gray-300 rounded-full px-2 py-1">
                             {size.value}
                         </span>
