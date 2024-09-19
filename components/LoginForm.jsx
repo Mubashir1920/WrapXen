@@ -1,4 +1,5 @@
 'use client'
+import { useLogin } from "@/hooks/useLogin"
 import { useWixClient } from "@/hooks/useWixClient"
 import Cookies from "js-cookie"
 import Link from "next/link"
@@ -14,7 +15,8 @@ const LoginForm = () => {
 
     const wixClient = useWixClient()
     const router = useRouter()
-    const isLoggedIn = wixClient.auth.loggedIn()
+    const { setIsLoggedIn } = useLogin()
+    const isLogged = wixClient.auth.loggedIn()
 
     const [showForgotPassword, setShowForgotPassword] = useState(false)
     const [email, setEmail] = useState('')
@@ -38,16 +40,20 @@ const LoginForm = () => {
 
             if (res.loginState === 'SUCCESS') {
                 const tokens = await wixClient.auth.getMemberTokensForDirectLogin(res.data.sessionToken)
-                console.log(tokens);
                 Cookies.set('refreshToken', JSON.stringify(tokens.refreshToken), {
                     expires: 3
                 })
                 wixClient.auth.setTokens(tokens)
-                router.push('/')
+                setIsLoggedIn(true)
+                router.back()
             }
             if (res.loginState === 'FAILURE') {
                 setError('Invalid email or password')
             }
+            if (res.loginState === 'EMAIL_VERIFICATION_REQUIRED') {
+                setError('Email Verification Required. Check Your Email')
+            }
+
         } catch (error) {
             console.log(error);
         } finally {
@@ -58,26 +64,33 @@ const LoginForm = () => {
 
     // Handle Forgot Password 
     const handleForgotPassword = async (e) => {
+        setLoading(true)
         e.preventDefault()
         try {
-            await wixClient.auth.sendPasswordResetEmail(
+            const res = await wixClient.auth.sendPasswordResetEmail(
                 email,
                 "http://localhost:3000/login",
             );
+            console.log(res);
             toast.success('Reset Password Link Sent')
-            router.push('/')
+            setShowForgotPassword(false)
+            setEmail('')
+            setPassword('')
         } catch (error) {
+            console.log(error);
             setError('Invalid Email Address')
+        } finally {
+            setLoading(false)
         }
 
     }
 
     // Check If User is Logged In 
     useEffect(() => {
-        if (isLoggedIn) {
+        if (isLogged) {
             router.push('/')
         }
-    }, [isLoggedIn])
+    }, [isLogged])
 
     return (
         <div className=" text-gray-900 antialiased">
@@ -131,24 +144,25 @@ const LoginForm = () => {
                                     )}
                                 </div>
                             </div>
-                            {error && <p className="text-red-600 text-sm" > {error} </p>}
+                            {error && <p className="text-red-600 py-2 text-sm" > {error} </p>}
 
                             <div className="flex items-center justify-end">
                                 <button className='  w-full  px-4 py-2 bg-black  rounded-md font-semibold text-sm text-white  tracking-widest hover:bg-gray-900    transition ease-in-out duration-150'
                                     type="submit" disabled={loading}
                                 >
-                                    {loading ? (<AiOutlineLoading size={22} className='inline-block text-center animate-spin ' />) : ('SignIn')}
+                                    {loading ? (<AiOutlineLoading size={22} className='inline-block text-center animate-spin ' />) : ('Login')}
 
                                 </button>
                             </div>
                         </form>
                         <div className=" mt-6  flex flex-col items-center gap-3 ">
                             <button onClick={() => setShowForgotPassword(true)} className="text-sm text-gray-600 hover:text-gray-900 "
+                                disabled={loading}
                             >
                                 Forgot your password?
                             </button>
                             <p className="ms-2 text-sm  text-gray-600" >Dont Have Account ?{' '}
-                                <Link href='/signup' className="hover:text-blue-400 font-semibold" >
+                                <Link href='/signup' className={`${loading ? 'pointer-events-none' : ''} hover:text-blue-400 font-semibold`} >
                                     Signup
                                 </Link>
                             </p>
@@ -174,8 +188,14 @@ const LoginForm = () => {
                                         onChange={(e) => setEmail(e.target.value)}
                                         autoComplete='on'
                                     />
-                                    {error && <p className="text-red-600 text-sm my-1" > {error} </p>}
-                                    <button type='submit' className='my-2 w-full bg-black text-white py-1 px-4 rounded-xl '>Send</button>
+                                    {error && <p className="text-red-600 text-sm my-3" > {error} </p>}
+                                    <button
+                                        type='submit'
+                                        className='my-2 w-full bg-black text-white py-2 px-4 rounded-lg '
+                                    >
+                                        {loading ? (<AiOutlineLoading size={22} className='inline-block text-center animate-spin ' />) : ('Send')}
+
+                                    </button>
                                 </div>
                             </form>
 

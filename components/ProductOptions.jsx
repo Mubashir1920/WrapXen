@@ -1,12 +1,16 @@
 'use client'
 import { useEffect, useState } from 'react';
 import AddToCart from './AddtoCart';
+import { FaStar } from "react-icons/fa";
+import SizeChart from './SizeChart';
 
-const ProductOptions = ({ productId, variants, ProductOptions }) => {
+const ProductOptions = ({ product, variants, ProductOptions }) => {
 
 
+
+    const [isOpen, setIsOpen] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState({})
-    const [selectedVariant, setSelectedVariant] = useState()
+    const [selectedVariant, setSelectedVariant] = useState('')
 
     const handleOptionSelect = (optionType, choice) => {
         setSelectedOptions((prevOptions) => ({ ...prevOptions, [optionType]: choice }))
@@ -22,6 +26,15 @@ const ProductOptions = ({ productId, variants, ProductOptions }) => {
         }))
 
     }
+    useEffect(() => {
+        if (ProductOptions?.length > 0) {
+            const defaultSelectedOptions = {};
+            ProductOptions.forEach(option => {
+                defaultSelectedOptions[option.name] = option.choices[0].description;
+            });
+            setSelectedOptions(defaultSelectedOptions);
+        }
+    }, [ProductOptions]);
 
     useEffect(() => {
         const variant = variants.find(v => {
@@ -33,17 +46,52 @@ const ProductOptions = ({ productId, variants, ProductOptions }) => {
 
     }, [selectedOptions, variants])
 
-
-
-
     return (
         <div className="py-4">
+            {/* <!-- Title --> */}
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-800"> {product.name} </h1>
+
+            {/* <!-- Price Section --> */}
+            <div>
+                {product.priceRange.minValue !== product.priceRange.maxValue ? (
+                    <div className='text-md text-gray-800  mt-4' >
+                        Rs {product.priceRange.minValue} - Rs {product.priceRange.maxValue}
+                    </div>
+
+                ) : ''}
+            </div>
+            <div className="flex items-center space-x-2 mt-1">
+                {selectedVariant && (selectedVariant.variant.priceData.discountedPrice && selectedVariant.variant.priceData.price) && (selectedVariant.variant.priceData.discountedPrice !== selectedVariant.variant.priceData.price) ? (<div>
+                    <span className="text-md line-through text-gray-500 ">Rs {selectedVariant.variant.priceData.price} </span>
+                    <span className="text-xl tracking-tighter  font-bold text-red-600">Rs {selectedVariant.variant.priceData.discountedPrice.toFixed()} /- </span>
+                    <div className="mt-4 text-sm text-gray-500">
+                        <p>Standard Size Skin.Refer to Our Size Guide</p>
+                    </div>
+                </div>
+                ) : (
+                    <span className="text-xl tracking-tighter font-bold text-gray-900 ">
+                        {product.priceRange.minValue !== product.priceRange.maxValue ? (
+                            <div>
+                                Rs {product.priceRange.minValue} - Rs {product.priceRange.maxValue}
+                            </div>
+
+                        ) : (
+                            <div>
+                                Rs {product.priceData.price} /-
+                            </div>
+                        )}
+                    </span>
+                )}
+            </div>
+
+
+            
             <div className="mb-4">
                 {ProductOptions.map(option => (
                     <div key={option.name} >
 
-                        <h3 className="text-md  tracking-tight font-semibold my-3"> Select  {option.name} {option.name === 'Size' ? (<span className='ml-2  font-light text-gray-500 hover:text-black transition-colors duration-300 text-xs  cursor-pointer underline' >Size Chart</span>) : null}  </h3>
-                        
+                        <h3 className="text-md  tracking-tight font-semibold my-3"> Select :  {option.name} {option.name === 'Size' ? (<div className='inline-block' > <SizeChart isOpen={isOpen} setIsOpen={setIsOpen} /></div>) : null}  </h3>
+
                         <div className="flex space-x-2">
                             {option.choices.map((choice) => {
 
@@ -69,7 +117,11 @@ const ProductOptions = ({ productId, variants, ProductOptions }) => {
 
                 ))}
             </div>
-            <AddToCart productId={productId} variantsId={selectedVariant?._id || "00000-0000000-000000"} stockNumber={selectedVariant?.stock?.quantity || 0} />
+            <AddToCart
+                productId={product._id}
+                variantId={selectedVariant._id || "00000-0000000-000000"}
+                stockNumber={selectedVariant?.stock?.quantity || 0}
+            />
 
         </div>
     );

@@ -25,6 +25,8 @@ const SignupForm = () => {
     const [loading, setLoading] = useState(false)
 
 
+
+    //  Handle Sign Up Form
     const handleSubmitChange = async (e) => {
         setLoading(true)
         e.preventDefault()
@@ -55,7 +57,10 @@ const SignupForm = () => {
         setUsername('')
     }
 
+
+    // Handle Account Verification
     const handleVerification = async (e) => {
+        setLoading(true)
         e.preventDefault()
         try {
             const res = await wixClient.auth.processVerification({
@@ -69,6 +74,8 @@ const SignupForm = () => {
         } catch (error) {
             setError('Invalid Verification Code')
             console.log(error);
+        } finally {
+            setLoading(false)
         }
     }
     useEffect(() => {
@@ -144,7 +151,7 @@ const SignupForm = () => {
                         className="mt-6 block w-full select-none rounded-lg bg-black py-3 px-6 text-center text-sm font-bold uppercase text-white shadow-md  transition-all hover:shadow-lg  focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="submit"
                         data-ripple-light="true"
-                        disabled={loading ? true : false}
+                        disabled={loading}
                     >
                         {loading ? (<AiOutlineLoading size={22} className='inline-block text-center animate-spin ' />) : ('Register')}
 
@@ -152,13 +159,13 @@ const SignupForm = () => {
                     <p className="mt-4 block text-center text-sm    text-gray-700 ">
                         Already have an account?
                         <Link
-                            className="font-semibold text-black transition-colors hover:text-blue-400"
+                            className={`font-semibold text-black transition-colors hover:text-blue-400 ${loading ? 'pointer-events-none' : ''}`}
                             href="/login"
                         >
                             {' '}Login
                         </Link>
                     </p>
-                    <p onClick={()=>setShowVerification(true)}  className='cursor-pointer hover:text-gray-900 text-gray-600 text-xs font-semibold my-2  text-center  ' >Verify Account ? </p>
+                    <p onClick={() => setShowVerification(true)} className={`${loading ? 'pointer-events-none' : ''}cursor-pointer hover:text-gray-900 text-gray-600 text-xs font-semibold my-2  text-center`} >Verify Account ? </p>
                 </form>
             </div>}
             {showVerification && <div className="relative flex flex-col rounded-xl border border-gray-200 p-5 bg-transparent bg-clip-border text-gray-700 shadow-none">
@@ -178,7 +185,12 @@ const SignupForm = () => {
                             onChange={(e) => setEmailCode(e.target.value)}
                             autoComplete='on'
                         />
-                        <button type='submit' className='my-2 w-full bg-black text-white py-1 px-4 rounded-xl '>Verify</button>
+                        <button
+                            type='submit'
+                            className='my-2 w-full bg-black text-white py-2 px-4 rounded-lg '
+                        >
+                            {loading ? (<AiOutlineLoading size={22} className='inline-block text-center animate-spin ' />) : ('Verify')}
+                        </button>
                     </div>
                 </form>
                 {error && <p className="text-red-600 text-sm" > {error} </p>}

@@ -4,7 +4,9 @@ import Navbar from '@/components/Navbar';
 import { Poppins } from "next/font/google";
 import { WixClientProvider } from '@/context/wixContext';
 import 'photoswipe/dist/photoswipe.css'
-import { ToastContainer } from 'react-toastify';
+import Favicon from '@/public/favicon.ico'
+import ToastProvider from '@/hooks/ToastProvider';
+import ScrollToTop from '@/components/ScrollToTop';
 
 
 const poppins = Poppins({
@@ -18,21 +20,20 @@ export const metadata = {
     template: "%s | WrapXen"
   },
   description: "",
-
+  icons: [{ rel: 'icon', url: Favicon.src }]
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-      </head>
+    <html lang="en" className='scroll-smooth'>
       <body className={`${poppins.className} mt-[65px]`}>
-        <ToastContainer />
         <WixClientProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <ToastProvider>
+            <Navbar />
+            {children}
+            <ScrollToTop />
+            <Footer />
+          </ToastProvider>
         </WixClientProvider>
       </body>
     </html>

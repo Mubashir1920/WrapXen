@@ -41,7 +41,7 @@ const FilterComponent = () => {
         const { name, value } = e.target;
         const params = new URLSearchParams(searchParams);
         params.set(name, value);
-        replace(`${pathname}?${params.toString()}`);
+        replace(`${pathname}?page=0&${params.toString()}`);
     };
 
 
@@ -87,7 +87,7 @@ const FilterComponent = () => {
                             className="border border-gray-300 rounded-full px-4 py-2 text-gray-700"
                             onChange={handleFilterChange}
                         >
-                            <option>Product Type</option>
+                            <option>All Products</option>
                             <option value="laptopSkins">Laptop Skins</option>
                             <option value="mobileSkins">Mobile Skins</option>
                         </select>

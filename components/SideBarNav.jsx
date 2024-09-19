@@ -58,7 +58,7 @@ const SideBarNav = ({ active, setActive }) => {
                             <a
                                 className={`group-hover:text-gray-500`}
                                 href="#"
-                                
+
                             >
                                 Skins <FaChevronDown className={`inline-block ml-2 transition-transform duration-300 ${isSubMenuOpen ? 'rotate-180' : ''}`} size={13} />
                             </a>
@@ -70,10 +70,10 @@ const SideBarNav = ({ active, setActive }) => {
                             </div>
                         </li>
                         <li>
-                            <Link onClick={() => setActive(false)} className={`group-hover:text-gray-500 ${pathname === "/about" ? "active" : ""} `} href="/store">About Us</Link>
+                            <Link onClick={() => setActive(false)} className={`group-hover:text-gray-500 ${pathname === "/checkout" ? "active" : ""} `} href="/checkout">Checkout</Link>
                         </li>
                         <li>
-                            <Link onClick={() => setActive(false)} className={`group-hover:text-gray-500 ${pathname === "/contact" ? "active" : ""} `} href="/store">Contact Us</Link>
+                            <Link onClick={() => setActive(false)} className={`group-hover:text-gray-500 ${pathname === "/contact" ? "active" : ""} `} href="/contact">Contact Us</Link>
                         </li>
                     </ul>
                 </div>

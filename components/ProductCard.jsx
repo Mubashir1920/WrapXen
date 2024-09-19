@@ -1,13 +1,12 @@
 
 import Image from 'next/image';
-import { MdFavorite } from 'react-icons/md';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import LoadingLogo from './LoadingLogo';
 
 
 const ProductCard = ({ product }) => {
-   
+
 
     return (
 
@@ -38,9 +37,9 @@ const ProductCard = ({ product }) => {
                     </Suspense>
                 </Link>
             </div>
-            <button className="absolute top-2 right-2 bg-blue-300 text-white p-1 rounded-full">
-                <MdFavorite size={18} />
-            </button>
+            {(!product.stock.inStock && product.stock.quantity === 0) && <button className="absolute top-2 right-2 text-white  p-1 rounded-full">
+                <span className='w-[30px] text-sm h-[30px] bg-red-600 px-2  ' >Out Of Stock</span>
+            </button>}
             <div className="p-3">
                 <div className="flex items-center space-x-2 mt-4">
                     {product.priceData.discountedPrice !== product.priceData.price ? (<div>
@@ -51,7 +50,7 @@ const ProductCard = ({ product }) => {
                         <span className="text-sm tracking-tighter font-bold text-red-600 "> Rs {product.priceData.price}/-  </span>
                     )}
                 </div>
-                
+
                 <div className="flex flex-wrap justify-start items-start gap-2 mt-3">
                     {product.productOptions.length > 0 && product.productOptions[0].choices.map((size, index) => (
                         <span key={index} className="text-xs text-gray-600 border hover:border-gray-400 transition-colors hover:bg-gray-200 border-gray-300 rounded-full px-2 py-1">

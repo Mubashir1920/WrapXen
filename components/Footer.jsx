@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Logo from '@/public/images/Logo.png'
 import { FaFacebook, FaInstagram } from "react-icons/fa";
+import Link from "next/link";
 
 
 
 const Footer = () => {
   const Year = new Date().getFullYear()
   return (
-    <footer className="bg-blue-100 border border-gray-100 mt-10 rounded-tl-3xl rounded-tr-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+    <footer className="bg-blue-100 border border-gray-100 mt-10 mx-4 mb-5 rounded-3xl  shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
       <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between">
           <div className="text-teal-600">
@@ -76,20 +77,20 @@ const Footer = () => {
 
             <ul className="mt-6 space-y-4 text-sm">
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Home </a>
+                <Link href="/" className="text-gray-700 transition hover:opacity-75"> Home </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75">Shop</a>
+                <Link href="/store" className="text-gray-700 transition hover:opacity-75">Shop</Link>
               </li>
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Contact </a>
+                <Link href="/contact" className="text-gray-700 transition hover:opacity-75"> Contact </Link>
               </li>
 
               <li>
                 <a href="#" className="text-gray-700 transition hover:opacity-75"> FAQs </a>
               </li>
 
-              
+
             </ul>
           </div>
 

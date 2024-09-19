@@ -2,6 +2,7 @@
 import Pagination from "./Pagination";
 import ProductCard from "./ProductCard";
 import { WixClientServer } from "@/lib/wixClientServer";
+import { RiErrorWarningFill } from "react-icons/ri";
 
 const PRODUCT_PER_PAGE = 8
 const ProductListings = async ({ categoryId, limit = PRODUCT_PER_PAGE, searchParams, needPagination }) => {
@@ -13,9 +14,9 @@ const ProductListings = async ({ categoryId, limit = PRODUCT_PER_PAGE, searchPar
             categoryId = process.env.MOBILESKINS_CATEGORY_ID
         }
     }
-
+    let productQuery;
     const wixClient = await WixClientServer()
-    const productQuery = wixClient.products
+    productQuery = wixClient.products
         .queryProducts()
         .eq("collectionIds", categoryId)
         .gt('priceData.price', searchParams?.min || 0)
@@ -24,6 +25,13 @@ const ProductListings = async ({ categoryId, limit = PRODUCT_PER_PAGE, searchPar
         .limit(limit)
         .skip(searchParams?.page ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE) : 0)
 
+
+    let res;
+    try {
+        res = await productQuery.find()
+    } catch (error) {
+        console.log(error);
+    }
 
     // if (searchParams?.sort) {
     //     const [sortType, sortBy] = searchParams.sort.split(" ")
@@ -37,15 +45,18 @@ const ProductListings = async ({ categoryId, limit = PRODUCT_PER_PAGE, searchPar
     // }
 
 
-    const res = await productQuery.find()
 
 
     return (
         <div className="container mx-auto  px-2" >
             <div className="grid justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8 md:gap-4  py-12">
-                {res.items.map(product => (
+                {res ? res.items.map(product => (
                     <ProductCard product={product} key={product._id} />
-                ))}
+                )) : (
+                    <div className="flex  flex-col items-center" >
+                        <h1 className="text-sm font-normal  text-gray-600"><RiErrorWarningFill className="mr-2 inline-block" />Failed to Fetch</h1>
+                    </div>
+                )}
             </div>
             {needPagination &&
                 <Pagination
