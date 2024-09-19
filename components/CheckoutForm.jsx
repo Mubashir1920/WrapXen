@@ -8,7 +8,7 @@ import { useWixClient } from '@/hooks/useWixClient';
 import { FaChevronRight, FaShoppingBag } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { AiOutlineLoading } from 'react-icons/ai';
-import OrderPlaced from '@/components/order-placed';
+import OrderPlaced from './Order-Placed';
 import { MdOutlinePayment } from 'react-icons/md';
 import { useLogin } from '@/hooks/useLogin';
 import Link from 'next/link';
