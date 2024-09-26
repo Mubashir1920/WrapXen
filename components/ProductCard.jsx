@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
                     </Suspense>
                     <Suspense fallback={<LoadingLogo />} >
                         {product.media?.items && <Image
-                            src={product.media?.items[1]?.image?.url || "/images/Anime.webp"}
+                            src={product.media?.items[1]?.image?.url || product.media?.mainMedia?.image?.url || "/images/Anime.webp"}
                             alt="Product"
                             className="absolute top-0 hover:opacity-0 transition-opacity easy duration-300  w-full h-full md:h-64 object-cover"
                             height={0}

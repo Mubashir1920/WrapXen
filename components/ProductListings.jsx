@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 import { WixClientServer } from "@/lib/wixClientServer";
 import { RiErrorWarningFill } from "react-icons/ri";
 
-const PRODUCT_PER_PAGE = 8
+const PRODUCT_PER_PAGE = 12
 const ProductListings = async ({ categoryId, limit = PRODUCT_PER_PAGE, searchParams, needPagination }) => {
 
     if (searchParams) {
