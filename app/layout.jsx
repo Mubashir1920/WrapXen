@@ -7,6 +7,7 @@ import 'photoswipe/dist/photoswipe.css'
 import Favicon from '@/public/favicon.ico'
 import ToastProvider from '@/hooks/ToastProvider';
 import ScrollToTop from '@/components/ScrollToTop';
+import Popup from '@/components/Popup';
 
 
 const poppins = Poppins({
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
           <ToastProvider>
             <Navbar />
             {children}
+            <Popup />
             <ScrollToTop />
             <Footer />
           </ToastProvider>

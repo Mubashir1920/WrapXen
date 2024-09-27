@@ -104,8 +104,10 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-
-        <p className="text-xs text-gray-500 text-center">&copy; {Year}. WrapXen. All rights reserved.</p>
+        <div className="space-y-2" >
+          <p className="text-xs text-gray-500 text-center">&copy; {Year}. WrapXen. All rights reserved.</p>
+          <p className="text-xs text-gray-500 text-center">Designed And Developed by <a href="https://mubashir.netlify.app" target="_blank" className="font-semibold hover:text-black" >Mubashir</a> </p>
+        </div>
       </div>
     </footer>
   );
