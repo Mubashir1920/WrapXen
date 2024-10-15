@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { BsEnvelope } from 'react-icons/bs'
 import { FaLinkedinIn } from 'react-icons/fa'
-import { MdOutlineCancel } from 'react-icons/md'
+import { IoMdClose } from "react-icons/io";
 
 
 const Popup = () => {
@@ -24,18 +24,18 @@ const Popup = () => {
         };
     }, []);
     useEffect(() => {
-        
+
         setTimeout(() => {
             setMounted(true)
         }, 6000);
     }, [])
 
-
+    
     return mounted && (
-        <div className='fixed top-0 left-0 w-full h-full bg-[#00000081] z-[100] flex justify-center items-center' >
-            <div ref={closeRef} className='bg-white p-10 rounded-md shadow-md w-[500px] relative h
-            [300px] flex flex-col gap-4 '>
-                <MdOutlineCancel onClick={() => setMounted(false)} size={26} className='hover:text-gray-800 cursor-pointer  absolute right-4 top-4' />
+        <div className='fixed top-0 left-0 w-full h-full bg-[#00000091] z-[100] flex justify-center items-center' >
+            <div ref={closeRef} className='bg-white p-10 rounded-md shadow-md w-[80%]  sm:w-[500px] relative h
+            [300px] flex flex-col gap-2 '>
+                <IoMdClose onClick={() => setMounted(false)} size={26} className='hover:text-gray-800 cursor-pointer  absolute right-4 top-4' />
                 <p>Website Designed and Developed By <a href="https://mubashirdev.netlify.app" className='font-semibold ' target='_blank' >Mubashir</a> </p>
                 <p >Looking For A Customized Site ? Let's Connects</p>
                 <div className='flex gap-2' >
